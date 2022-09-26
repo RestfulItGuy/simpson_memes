@@ -1,8 +1,22 @@
 import type { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 
+interface QuoteProps {
+  image: string, quote: string, character: string
+}
+
 interface QuoteArray {
   image: string, quote: string, character: string
+}
+
+function QuoteComponent<QuoteProps>(props: QuoteProps){
+  return(
+    <div>
+      <img src={props.image} />
+      <p>{props.quote}</p>
+      <span>{props.character}</span>
+    </div>
+  )
 }
 
 const Home: NextPage = () => {
@@ -35,14 +49,12 @@ const Home: NextPage = () => {
         loading ?
         <p>Loading...</p> :
         <>
-          <div>
-            <img src={quoteData!.image} />
-            <p>{quoteData!.quote}</p>
-            <span>{quoteData!.character}</span>
-          </div>
-          <input placeholder='Filter by character name' onChange={(e) => {
-            setFilterString(e.target.value)
-          }} />
+          <QuoteComponent 
+            image={quoteData?.image} 
+            quote={quoteData?.quote} 
+            character={quoteData?.character} 
+          />
+          <input placeholder='Filter by character name' onChange={(e) => { setFilterString(e.target.value) }} />
           <button onClick={handleFetch}>New quote</button>
         </>
       }

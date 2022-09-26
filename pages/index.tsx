@@ -2,14 +2,14 @@ import type { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 
 interface QuoteProps {
-  image: string, quote: string, character: string
+  image: string | undefined, quote: string | undefined, character: string | undefined
 }
 
 interface QuoteArray {
   image: string, quote: string, character: string
 }
 
-function QuoteComponent<QuoteProps>(props: QuoteProps){
+function QuoteComponent(props: QuoteProps){
   return(
     <div>
       <img src={props.image} />
@@ -26,11 +26,13 @@ const Home: NextPage = () => {
 
   const handleFetch = () => {
     let url;
-    if(filterString.length > 1){
-      url = 'https://thesimpsonsquoteapi.glitch.me/quotes?character='+filterString
-    }else{
+
+    // setLoading(true)
+
+    filterString.length > 1 ? 
+      url = 'https://thesimpsonsquoteapi.glitch.me/quotes?character='+filterString : 
       url = 'https://thesimpsonsquoteapi.glitch.me/quotes'
-    }
+
     fetch(url)
       .then(response => response.json())
       .then((data) => setQuoteData(data['0']))

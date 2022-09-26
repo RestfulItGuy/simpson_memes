@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 
 interface QuoteProps {
-  image: string | undefined, quote: string | undefined, character: string | undefined
+  image?: string, quote?: string, character?: string
 }
 
 interface QuoteArray {
@@ -26,8 +26,6 @@ const Home: NextPage = () => {
 
   const handleFetch = () => {
     let url;
-
-    // setLoading(true)
 
     filterString.length > 1 ? 
       url = 'https://thesimpsonsquoteapi.glitch.me/quotes?character='+filterString : 

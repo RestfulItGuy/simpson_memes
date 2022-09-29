@@ -1,7 +1,9 @@
 import type { NextPage } from 'next'
 import { useEffect, useState } from 'react'
-import Filter from '../components/filter';
-import QuoteComponent from '../components/quote';
+
+
+import Filter from '../components/filter'
+import QuoteComponent from '../components/quote'
 
 interface QuoteArray {
   image: string, quote: string, character: string
@@ -40,7 +42,7 @@ const Home: NextPage = () => {
     <>
       {
         loading ?
-        <p>Loading...</p> :
+        <span>Loading...</span> :
         <>
           <QuoteComponent 
             image={quoteData?.image} 

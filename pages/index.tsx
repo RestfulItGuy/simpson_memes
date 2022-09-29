@@ -1,7 +1,6 @@
 import type { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 
-
 import Filter from '../components/filter'
 import QuoteComponent from '../components/quote'
 
@@ -42,7 +41,7 @@ const Home: NextPage = () => {
     <>
       {
         loading ?
-        <span>Loading...</span> :
+        <p>Loading...</p> :
         <>
           <QuoteComponent 
             image={quoteData?.image} 

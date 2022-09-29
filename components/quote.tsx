@@ -15,7 +15,7 @@ export default function QuoteComponent(props: QuoteProps){
   return(
     <Container>
       <img src={props.image} width='300px' height='500px' />
-      <p>"{props.quote}"</p>
+      <p>{"{props.quote}"}</p>
       <span> - <i>{props.character}</i></span>
     </Container>
   )

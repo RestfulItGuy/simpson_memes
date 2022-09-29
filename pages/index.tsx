@@ -1,22 +1,10 @@
 import type { NextPage } from 'next'
 import { useEffect, useState } from 'react'
-
-interface QuoteProps {
-  image?: string, quote?: string, character?: string
-}
+import Filter from '../components/filter';
+import QuoteComponent from '../components/quote';
 
 interface QuoteArray {
   image: string, quote: string, character: string
-}
-
-function QuoteComponent(props: QuoteProps){
-  return(
-    <div>
-      <img src={props.image} />
-      <p>{props.quote}</p>
-      <span>{props.character}</span>
-    </div>
-  )
 }
 
 const Home: NextPage = () => {
@@ -27,6 +15,8 @@ const Home: NextPage = () => {
   const handleFetch = () => {
     let url;
 
+    setLoading(true)
+
     filterString.length > 1 ? 
       url = 'https://thesimpsonsquoteapi.glitch.me/quotes?character='+filterString : 
       url = 'https://thesimpsonsquoteapi.glitch.me/quotes'
@@ -34,8 +24,11 @@ const Home: NextPage = () => {
     fetch(url)
       .then(response => response.json())
       .then((data) => setQuoteData(data['0']))
+      .finally(() => {
+        setFilterString('')
+        setLoading(false)
+      })
       .catch((error) => console.error(error))
-      .finally(() => setLoading(false))
   }
 
   //We load a random quote on page load
@@ -54,10 +47,9 @@ const Home: NextPage = () => {
             quote={quoteData?.quote} 
             character={quoteData?.character} 
           />
-          <input placeholder='Filter by character name' onChange={(e) => { setFilterString(e.target.value) }} />
-          <button onClick={handleFetch}>New quote</button>
-        </>
+        </> 
       }
+      <Filter filterFunction={handleFetch} setFilterString={setFilterString} />
     </>
   )
 }

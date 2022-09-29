@@ -1,3 +1,5 @@
+type FilterProps = {setFilterString: (value : string) => void, filterFunction: () => void}
+
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -7,7 +9,7 @@ const Container = styled.div`
   bottom: 50px;
 `
 
-export default function Filter(props){
+export default function Filter(props: FilterProps){
   return(
     <Container>
       <input placeholder='Filter by character name' onChange={(e) => { props.setFilterString(e.target.value) }} />

@@ -1,3 +1,4 @@
+type LayoutProps = {children: JSX.Element}
 import styled from "styled-components"
 
 const CentreContainer = styled.div`
@@ -8,7 +9,7 @@ const CentreContainer = styled.div`
   align-items: center;
 `
 
-export default function Layout({children}){
+export default function Layout({children}: LayoutProps){
   return(
     <>
       <CentreContainer>{children}</CentreContainer>
